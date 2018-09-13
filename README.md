@@ -1,57 +1,39 @@
-# Project Name
+---
+services: cognitive-services, computer vision, content moderator, custom vision, face
+platforms: dotnet, c#
+author: easyj2j
+---
 
-(short, 1-3 sentenced, description of the project)
+# Cognitive Services Vision C# SDK quickstart samples
+
+Latest sample code for Cognitive Services Vision SDK quickstarts.
 
 ## Features
 
-This project framework provides the following features:
+These samples demonstrate how to use Cognitive Services Vision client libraries for C#.
 
-* Feature 1
-* Feature 2
-* ...
+Click on one of the following links to go to the README for that service.
+
+* [Computer Vision](ComputerVision/README)
+* [Content Moderator](ContentModerator/README)
+* [Custom Vision](CustomVision/README)
+* [Face](Face/README)
 
 ## Getting Started
 
 ### Prerequisites
 
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
+* You need **subscription keys** for the Vision services to run the samples. See the READMEs for the individual services for details.
+* Any edition of [Visual Studio 2017](https://www.visualstudio.com/downloads/).
 
 ### Quickstart
-(Add steps to get up and running quickly)
 
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
+1. Clone or download the repository.
+1. Navigate to the service folder of interest.
+1. Double-click the solution (.sln) file to open the solution in Visual Studio.
+1. Follow the individual README for the selected service.
 
 ## Resources
 
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+* [Cognitive Services Documentation](https://docs.microsoft.com/azure/cognitive-services/)
+* [Microsoft.Azure.CognitiveServices.Vision](https://www.nuget.org/packages?q=Microsoft.Azure.CognitiveServices.Vision) NuGet packages
