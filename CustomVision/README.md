@@ -4,9 +4,9 @@ platforms: dotnet, c#
 author: easyj2j
 ---
 
-# Cognitive Services Custom Vision C# SDK quickstart samples
+# Custom Vision C# SDK quickstart samples
 
-Latest sample code for Cognitive Services Custom Vision SDK quickstarts.
+This repository provides the latest sample code for Cognitive Services Custom Vision SDK quickstarts. These samples target the [Microsoft.Azure.CognitiveServices.Vision.CustomVision.Training 0.12.0-preview](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.CustomVision.Training/0.12.0-preview) and [Microsoft.Azure.CognitiveServices.Vision.CustomVision.Prediction 0.10.0-preview](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.CustomVision.Prediction/0.10.0-preview) client libraries.
 
 ## Features
 

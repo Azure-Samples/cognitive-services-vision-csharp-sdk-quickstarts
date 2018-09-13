@@ -4,22 +4,22 @@ platforms: dotnet, c#
 author: easyj2j
 ---
 
-# Cognitive Services Computer Vision C# SDK quickstart samples
+# Computer Vision C# SDK quickstart samples
 
-Latest sample code for Cognitive Services Computer Vision SDK quickstarts.
+This repository provides the latest sample code for Cognitive Services Computer Vision SDK quickstarts. These samples target the [Microsoft.Azure.CognitiveServices.Vision.ComputerVision 3.2.0](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/3.2.0) client library.
 
 ## Features
 
 These samples demonstrate how to use the Computer Vision client library for C# to perform the following actions.
 
-* Analyze an image.
-* Generate a thumbnail of an image.
-* Extract handwritten text from an image.
+* Analyze an image
+* Generate a thumbnail of an image
+* Extract handwritten text from an image
 
  Two image input methods are demonstrated for each sample:
 
-* Uploading a local image.
-* Specifying the URL of a remote image.
+* Uploading a local image
+* Specifying the URL of a remote image
 
 ## Getting Started
 
@@ -51,4 +51,4 @@ These samples demonstrate how to use the Computer Vision client library for C# t
 
 * [Computer Vision service documentation](https://docs.microsoft.com/azure/cognitive-services/computer-vision/)
 * [Computer Vision API - v2.0](https://westus.dev.cognitive.microsoft.com/docs/services/5adf991815e1060e6355ad44/operations/56f91f2e778daf14a499e1fa)
-* [Microsoft.Azure.CognitiveServices.Vision.ComputerVision 3.2.0](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/3.2.0) client library NuGet package
+* [Microsoft.Azure.CognitiveServices.Vision.ComputerVision 3.2.0](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.ComputerVision/3.2.0) NuGet package

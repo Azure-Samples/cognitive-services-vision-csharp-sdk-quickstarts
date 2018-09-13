@@ -6,7 +6,7 @@ author: easyj2j
 
 # Cognitive Services Vision C# SDK quickstart samples
 
-Latest sample code for Cognitive Services Vision SDK quickstarts.
+This repository provides the latest sample code for Cognitive Services Vision services SDK quickstarts.
 
 ## Features
 

@@ -6,7 +6,7 @@ author: easyj2j
 
 # Cognitive Services Face C# SDK quickstart samples
 
-Latest sample code for Cognitive Services Face SDK quickstarts.
+This repository provides the latest sample code for Cognitive Services Face SDK quickstarts. These samples target the [Microsoft.Azure.CognitiveServices.Vision.Face 2.2.0-preview](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.Vision.Face/2.2.0-preview) client library.
 
 ## Features
 
