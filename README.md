@@ -14,10 +14,10 @@ These samples demonstrate how to use Cognitive Services Vision client libraries 
 
 Click on one of the following links to go to the README for that service.
 
-* [Computer Vision](ComputerVision/README)
-* [Content Moderator](ContentModerator/README)
-* [Custom Vision](CustomVision/README)
-* [Face](Face/README)
+* [Computer Vision](ComputerVision/README.md)
+* [Content Moderator](ContentModerator/README.md)
+* [Custom Vision](CustomVision/README.md)
+* [Face](Face/README.md)
 
 ## Getting Started
 
