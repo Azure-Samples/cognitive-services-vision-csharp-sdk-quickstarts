@@ -10,7 +10,15 @@ This repository provides the latest sample code for Cognitive Services Face SDK 
 
 ## Features
 
-These samples demonstrate how to use the Face client library for C# to perform the following actions.
+These samples demonstrate how to use the Face client library for C# to perform the following actions
+
+* Detect faces in an image
+* Get age and gender of each face
+
+ Two image input methods are demonstrated for each sample:
+
+* Uploading a local image
+* Specifying the URL of a remote image
 
 ## Getting Started
 
@@ -24,6 +32,17 @@ These samples demonstrate how to use the Face client library for C# to perform t
 1. Clone or download the repository.
 1. Navigate to the *Face* folder.
 1. Double-click the *Face.sln* file to open the solution in Visual Studio.
+1. Install the Face client library NuGet package.
+    1. On the top menu, click **Tools**, select **NuGet Package Manager**, then **Manage NuGet Packages for Solution**.
+    1. Click the **Browse** tab and then select **Include prerelease**.
+    1. In the **Search** box type "Microsoft.Azure.CognitiveServices.Vision.Face".
+    1. Select **Microsoft.Azure.CognitiveServices.Vision.Face** when it displays, then click the checkbox next to your project name, and **Install**.
+1. Open *Program.cs*.
+1. Replace `<Subscription Key>` with your valid subscription key.
+1. Change `faceEndpoint` to the Azure region associated with your subscription keys, if necessary.
+1. Optionally, replace <`LocalImage>` with the path and file name of a local image (will be ignored if not set).
+1. Optionally, set `remoteImageUrl` to a different image.
+1. Run the program.
 
 ## Resources
 

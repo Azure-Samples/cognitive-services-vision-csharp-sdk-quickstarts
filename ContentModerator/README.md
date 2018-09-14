@@ -6,11 +6,7 @@ author: easyj2j
 
 # Content Moderator C# SDK quickstart samples
 
-This repository provides the latest sample code for Cognitive Services Content Moderator SDK quickstarts. These samples target the [Microsoft.Azure.CognitiveServices.ContentModerator 0.13.0-preview](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.ContentModerator) client library.
-
-## Features
-
-See [Samples for Cognitive Services Nuget Packages](https://github.com/Azure-Samples/cognitive-services-dotnet-sdk-samples/tree/master/ContentModerator) for up-to-date Content Moderator samples.
+See [Azure-Samples/cognitive-services-dotnet-sdk-samples](https://github.com/Azure-Samples/cognitive-services-dotnet-sdk-samples/tree/master/ContentModerator) for up-to-date Content Moderator samples.
 
 ## Getting Started
 

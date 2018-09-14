@@ -10,7 +10,7 @@ This repository provides the latest sample code for Cognitive Services Computer 
 
 ## Features
 
-These samples demonstrate how to use the Computer Vision client library for C# to perform the following actions.
+These samples demonstrate how to use the Computer Vision client library for C# to perform the following actions:
 
 * Analyze an image
 * Generate a thumbnail of an image
