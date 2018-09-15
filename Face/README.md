@@ -33,10 +33,10 @@ These samples demonstrate how to use the Face client library for C# to perform t
 1. Navigate to the *Face* folder.
 1. Double-click the *Face.sln* file to open the solution in Visual Studio.
 1. Install the Face client library NuGet package.
-    1. On the top menu, click **Tools**, select **NuGet Package Manager**, then **Manage NuGet Packages for Solution**.
-    1. Click the **Browse** tab and then select **Include prerelease**.
-    1. In the **Search** box type "Microsoft.Azure.CognitiveServices.Vision.Face".
-    1. Select **Microsoft.Azure.CognitiveServices.Vision.Face** when it displays, then click the checkbox next to your project name, and **Install**.
+   1. On the top menu, click **Tools**, select **NuGet Package Manager**, then **Manage NuGet Packages for Solution**.
+   1. Click the **Browse** tab and then select **Include prerelease**.
+   1. In the **Search** box type "Microsoft.Azure.CognitiveServices.Vision.Face".
+   1. Select **Microsoft.Azure.CognitiveServices.Vision.Face** when it displays, then click the checkbox next to your project name, and **Install**.
 1. Open *Program.cs*.
 1. Replace `<Subscription Key>` with your valid subscription key.
 1. Change `faceEndpoint` to the Azure region associated with your subscription keys, if necessary.

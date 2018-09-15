@@ -8,6 +8,14 @@ author: easyj2j
 
 See [Azure-Samples/cognitive-services-dotnet-sdk-samples](https://github.com/Azure-Samples/cognitive-services-dotnet-sdk-samples/tree/master/CustomVision) for up-to-date Custom Vision samples.
 
+Notes:
+
+* The samples linked to above use Microsoft.Azure.CognitiveServices.Vision.CustomVision.Training 0.10.0-preview. They also work when upgraded to CustomVision.Training 0.12.0-preview.
+* ObjectDetection, ln 29: `var project = trainingApi.CreateProject("My New Project", null, objDetectionDomain.Id);`
+  * If not using 'Limited trial' keys, an HttpOperationException: Forbidden is thrown.
+  * When using 'Limited trial' keys and the number of projects = 2 (the max), an HttpOperationException: Bad Request is thrown.
+  * See [Issue# 49](https://github.com/Azure-Samples/cognitive-services-dotnet-sdk-samples/issues/49)
+
 ## Getting Started
 
 ### Prerequisites

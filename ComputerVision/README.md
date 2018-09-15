@@ -34,9 +34,9 @@ These samples demonstrate how to use the Computer Vision client library for C# t
 1. Navigate to the *ComputerVision* folder.
 1. Double-click the *ComputerVision.sln* file to open the solution in Visual Studio.
 1. Install the Computer Vision client library NuGet package.
-    1. On the top menu, click **Tools**, select **NuGet Package Manager**, then **Manage NuGet Packages for Solution**.
-    1. Click the **Browse** tab, and in the **Search** box type "Microsoft.Azure.CognitiveServices.Vision.ComputerVision".
-    1. Select **Microsoft.Azure.CognitiveServices.Vision.ComputerVision** when it displays, then click the checkbox next to your project name, and **Install**.
+   1. On the top menu, click **Tools**, select **NuGet Package Manager**, then **Manage NuGet Packages for Solution**.
+   1. Click the **Browse** tab, and in the **Search** box type "Microsoft.Azure.CognitiveServices.Vision.ComputerVision".
+   1. Select **Microsoft.Azure.CognitiveServices.Vision.ComputerVision** when it displays, then click the checkbox next to your project name, and **Install**.
 1. Select the project to run by doing one of the following actions:
     * Use the dropdown combobox in the top menu to select the project.
     * Right-click the project and select **Set as StartUp Project**.
