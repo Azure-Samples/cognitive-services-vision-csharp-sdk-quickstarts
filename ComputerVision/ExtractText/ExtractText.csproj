@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4B9D526F-48EA-4D94-9102-C645ADDDB123}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>HandwrittenText</RootNamespace>
-    <AssemblyName>HandwrittenText</AssemblyName>
+    <RootNamespace>ExtractText</RootNamespace>
+    <AssemblyName>ExtractText</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
