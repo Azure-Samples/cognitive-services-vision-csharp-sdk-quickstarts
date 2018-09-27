@@ -43,7 +43,7 @@ These samples demonstrate how to use the Computer Vision client library for C# t
 1. Open the *Program.cs* file associated with the project.
 1. Replace `<Subscription Key>` with your valid subscription key.
 1. Change `computerVision.Endpoint` to the Azure region associated with your subscription keys, if necessary.
-1. Optionally, set `textRecognitionMode` to `TextRecognitionMode.Printed`.
+1. For ExtractText, optionally set `textRecognitionMode` to `TextRecognitionMode.Printed`.
 1. Optionally, replace <`LocalImage>` with the path and file name of a local image (will be ignored if not set).
 1. Optionally, set `remoteImageUrl` to a different image.
 1. Run the program.
