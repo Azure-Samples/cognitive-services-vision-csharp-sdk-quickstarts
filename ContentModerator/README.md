@@ -25,4 +25,4 @@ See [Azure-Samples/cognitive-services-dotnet-sdk-samples](https://github.com/Azu
 
 * [Content Moderator service documentation](https://docs.microsoft.com/azure/cognitive-services/content-moderator/overview)
 * [Content Moderator API](https://docs.microsoft.com/azure/cognitive-services/content-moderator/api-reference)
-* [Microsoft.Azure.CognitiveServices.ContentModerator 0.13.0-preview](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.ContentModerator) NuGet package
+* [Microsoft.Azure.CognitiveServices.ContentModerator 1.0.0](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.ContentModerator/1.0.0) NuGet package
