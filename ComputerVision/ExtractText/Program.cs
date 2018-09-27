@@ -44,8 +44,8 @@ namespace ExtractText
             computerVision.Endpoint = "https://westcentralus.api.cognitive.microsoft.com";
 
             Console.WriteLine("Images being analyzed ...");
-            var t1 = ExtractRemoteHandTextAsync(computerVision, remoteImageUrl);
-            var t2 = ExtractLocalHandTextAsync(computerVision, localImagePath);
+            var t1 = ExtractRemoteTextAsync(computerVision, remoteImageUrl);
+            var t2 = ExtractLocalTextAsync(computerVision, localImagePath);
 
             Task.WhenAll(t1, t2).Wait(5000);
             Console.WriteLine("Press ENTER to exit");
@@ -53,7 +53,7 @@ namespace ExtractText
         }
 
         // Recognize text from a remote image
-        private static async Task ExtractRemoteHandTextAsync(
+        private static async Task ExtractRemoteTextAsync(
             ComputerVisionClient computerVision, string imageUrl)
         {
             if (!Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
@@ -72,7 +72,7 @@ namespace ExtractText
         }
 
         // Recognize text from a local image
-        private static async Task ExtractLocalHandTextAsync(
+        private static async Task ExtractLocalTextAsync(
             ComputerVisionClient computerVision, string imagePath)
         {
             if (!File.Exists(imagePath))
