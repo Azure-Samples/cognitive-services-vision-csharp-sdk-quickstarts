@@ -35,10 +35,10 @@ namespace DetectFace
 
         static void Main(string[] args)
         {
-            FaceClient faceClient = new FaceClient(
-                new ApiKeyServiceClientCredentials(subscriptionKey),
-                new System.Net.Http.DelegatingHandler[] { });
+            var faceClient = new FaceClient(new ApiKeyServiceClientCredentials(subscriptionKey));
             faceClient.Endpoint = faceEndpoint;
+
+
 
             Console.WriteLine("Faces being detected ...");
             var t1 = DetectRemoteAsync(faceClient, remoteImageUrl);
