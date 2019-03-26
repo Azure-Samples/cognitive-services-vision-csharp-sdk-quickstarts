@@ -10,7 +10,7 @@ namespace ExtractText
     class Program
     {
         // subscriptionKey = "0123456789abcdef0123456789ABCDEF"
-        private const string subscriptionKey = "subscription key";
+        private const string subscriptionKey = "<Subscription key>";
 
         // For printed text, change to TextRecognitionMode.Printed
         private const TextRecognitionMode textRecognitionMode =
