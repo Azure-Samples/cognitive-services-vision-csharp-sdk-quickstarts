@@ -100,7 +100,7 @@ namespace ExtractText
             string operationId = operationLocation.Substring(
                 operationLocation.Length - numberOfCharsInOperationId);
 
-            Console.WriteLine("\nCalling GetHandwritingRecognitionOperationResultAsync()");
+            Console.WriteLine("\nCalling GetReadOperationResultAsync()");
             ReadOperationResult result =
                 await computerVision.GetReadOperationResultAsync(operationId);
 
