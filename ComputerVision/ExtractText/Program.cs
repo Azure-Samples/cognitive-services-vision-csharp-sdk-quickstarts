@@ -10,7 +10,7 @@ namespace ExtractText
     class Program
     {
         // subscriptionKey = "0123456789abcdef0123456789ABCDEF"
-        private const string subscriptionKey = "<SubscriptionKey>";
+        private const string subscriptionKey = "subscription key";
 
         // For printed text, change to TextRecognitionMode.Printed
         private const TextRecognitionMode textRecognitionMode =
@@ -20,9 +20,7 @@ namespace ExtractText
         private const string localImagePath = @"<LocalImage>";
 
         private const string remoteImageUrl =
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/" +
-            "Cursive_Writing_on_Notebook_paper.jpg/" +
-            "800px-Cursive_Writing_on_Notebook_paper.jpg";
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Cursive_Writing_on_Notebook_paper.jpg/800px-Cursive_Writing_on_Notebook_paper.jpg";
 
         private const int numberOfCharsInOperationId = 36;
 
@@ -41,7 +39,7 @@ namespace ExtractText
             // need to change the region.
 
             // Specify the Azure region
-            computerVision.Endpoint = "https://westcentralus.api.cognitive.microsoft.com";
+            computerVision.Endpoint = "https://westus.api.cognitive.microsoft.com";
 
             Console.WriteLine("Images being analyzed ...");
             var t1 = ExtractRemoteTextAsync(computerVision, remoteImageUrl);
@@ -52,7 +50,7 @@ namespace ExtractText
             Console.ReadLine();
         }
 
-        // Recognize text from a remote image
+        // Read text from a remote image
         private static async Task ExtractRemoteTextAsync(
             ComputerVisionClient computerVision, string imageUrl)
         {
@@ -63,9 +61,9 @@ namespace ExtractText
                 return;
             }
 
-            // Start the async process to recognize the text
-            RecognizeTextHeaders textHeaders =
-                await computerVision.RecognizeTextAsync(
+            // Start the async process to read the text
+            BatchReadFileHeaders textHeaders =
+                await computerVision.BatchReadFileAsync(
                     imageUrl, textRecognitionMode);
 
             await GetTextAsync(computerVision, textHeaders.OperationLocation);
@@ -85,8 +83,8 @@ namespace ExtractText
             using (Stream imageStream = File.OpenRead(imagePath))
             {
                 // Start the async process to recognize the text
-                RecognizeTextInStreamHeaders textHeaders =
-                    await computerVision.RecognizeTextInStreamAsync(
+                BatchReadFileInStreamHeaders textHeaders =
+                    await computerVision.BatchReadFileInStreamAsync(
                         imageStream, textRecognitionMode);
 
                 await GetTextAsync(computerVision, textHeaders.OperationLocation);
@@ -103,8 +101,8 @@ namespace ExtractText
                 operationLocation.Length - numberOfCharsInOperationId);
 
             Console.WriteLine("\nCalling GetHandwritingRecognitionOperationResultAsync()");
-            TextOperationResult result =
-                await computerVision.GetTextOperationResultAsync(operationId);
+            ReadOperationResult result =
+                await computerVision.GetReadOperationResultAsync(operationId);
 
             // Wait for the operation to complete
             int i = 0;
@@ -116,15 +114,18 @@ namespace ExtractText
                     "Server status: {0}, waiting {1} seconds...", result.Status, i);
                 await Task.Delay(1000);
 
-                result = await computerVision.GetTextOperationResultAsync(operationId);
+                result = await computerVision.GetReadOperationResultAsync(operationId);
             }
 
             // Display the results
             Console.WriteLine();
-            var lines = result.RecognitionResult.Lines;
-            foreach (Line line in lines)
+            var recResults = result.RecognitionResults;
+            foreach (TextRecognitionResult recResult in recResults)
             {
-                Console.WriteLine(line.Text);
+                foreach (Line line in recResult.Lines)
+                {
+                    Console.WriteLine(line.Text);
+                }
             }
             Console.WriteLine();
         }
