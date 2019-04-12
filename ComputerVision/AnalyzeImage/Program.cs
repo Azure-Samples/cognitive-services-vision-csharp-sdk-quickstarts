@@ -93,7 +93,14 @@ namespace ImageAnalyze
         private static void DisplayResults(ImageAnalysis analysis, string imageUri)
         {
             Console.WriteLine(imageUri);
-            Console.WriteLine(analysis.Description.Captions[0].Text + "\n");
+            if (analysis.Description.Captions.Count != 0)
+            {
+                Console.WriteLine(analysis.Description.Captions[0].Text + "\n");
+            }
+            else
+            {
+                Console.WriteLine("No description generated.");
+            }
         }
     }
 }
