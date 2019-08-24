@@ -9,8 +9,8 @@ namespace ExtractText
 {
     class Program
     {
-        // subscriptionKey = "0123456789abcdef0123456789ABCDEF"
-        private const string subscriptionKey = "<Subscription key>";
+        // Add your Computer Vision subscription key to your environment variables.
+        private const string subscriptionKey = Environment.GetEnvironmentVariable("COMPUTER_VISION_SUBSCRIPTION_KEY");
 
         // For printed text, change to TextRecognitionMode.Printed
         private const TextRecognitionMode textRecognitionMode =
@@ -38,8 +38,8 @@ namespace ExtractText
             // region. If you use a free trial subscription key, you shouldn't
             // need to change the region.
 
-            // Specify the Azure region
-            computerVision.Endpoint = "https://westus.api.cognitive.microsoft.com";
+            // Add your Computer Vision endpoint to your environment variables.
+            computerVision.Endpoint = Environment.GetEnvironmentVariable("COMPUTER_VISION_SUBSCRIPTION_KEY");
 
             Console.WriteLine("Images being analyzed ...");
             var t1 = ExtractRemoteTextAsync(computerVision, remoteImageUrl);
