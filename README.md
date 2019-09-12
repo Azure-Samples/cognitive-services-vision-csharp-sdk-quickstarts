@@ -1,7 +1,11 @@
 ---
-services: cognitive-services, computer vision, content moderator, custom vision, face
-platforms: dotnet, c#
-author: easyj2j
+page_type: sample
+languages:
+- csharp
+products:
+- azure
+description: "This repository provides the latest sample code for Cognitive Services Vision services SDK quickstarts."
+urlFragment: cognitive-services-vision-csharp-sdk-quickstarts
 ---
 
 # Cognitive Services Vision C# SDK quickstart samples
