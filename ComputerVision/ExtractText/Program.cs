@@ -9,8 +9,8 @@ namespace ExtractText
 {
     class Program
     {
-        // subscriptionKey = "0123456789abcdef0123456789ABCDEF"
-        private const string subscriptionKey = "<SubscriptionKey>";
+        // Add your Computer Vision subscription key to your environment variables.
+        private const string subscriptionKey = Environment.GetEnvironmentVariable("COMPUTER_VISION_SUBSCRIPTION_KEY");
 
         // For printed text, change to TextRecognitionMode.Printed
         private const TextRecognitionMode textRecognitionMode =
@@ -20,9 +20,7 @@ namespace ExtractText
         private const string localImagePath = @"<LocalImage>";
 
         private const string remoteImageUrl =
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/" +
-            "Cursive_Writing_on_Notebook_paper.jpg/" +
-            "800px-Cursive_Writing_on_Notebook_paper.jpg";
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Cursive_Writing_on_Notebook_paper.jpg/800px-Cursive_Writing_on_Notebook_paper.jpg";
 
         private const int numberOfCharsInOperationId = 36;
 
@@ -32,16 +30,8 @@ namespace ExtractText
                 new ApiKeyServiceClientCredentials(subscriptionKey),
                 new System.Net.Http.DelegatingHandler[] { });
 
-            // You must use the same region as you used to get your subscription
-            // keys. For example, if you got your subscription keys from westus,
-            // replace "westcentralus" with "westus".
-            //
-            // Free trial subscription keys are generated in the westus
-            // region. If you use a free trial subscription key, you shouldn't
-            // need to change the region.
-
-            // Specify the Azure region
-            computerVision.Endpoint = "https://westcentralus.api.cognitive.microsoft.com";
+            // Add your Computer Vision endpoint to your environment variables.
+            computerVision.Endpoint = Environment.GetEnvironmentVariable("COMPUTER_VISION_SUBSCRIPTION_KEY");
 
             Console.WriteLine("Images being analyzed ...");
             var t1 = ExtractRemoteTextAsync(computerVision, remoteImageUrl);
@@ -52,7 +42,7 @@ namespace ExtractText
             Console.ReadLine();
         }
 
-        // Recognize text from a remote image
+        // Read text from a remote image
         private static async Task ExtractRemoteTextAsync(
             ComputerVisionClient computerVision, string imageUrl)
         {
@@ -63,9 +53,9 @@ namespace ExtractText
                 return;
             }
 
-            // Start the async process to recognize the text
-            RecognizeTextHeaders textHeaders =
-                await computerVision.RecognizeTextAsync(
+            // Start the async process to read the text
+            BatchReadFileHeaders textHeaders =
+                await computerVision.BatchReadFileAsync(
                     imageUrl, textRecognitionMode);
 
             await GetTextAsync(computerVision, textHeaders.OperationLocation);
@@ -85,8 +75,8 @@ namespace ExtractText
             using (Stream imageStream = File.OpenRead(imagePath))
             {
                 // Start the async process to recognize the text
-                RecognizeTextInStreamHeaders textHeaders =
-                    await computerVision.RecognizeTextInStreamAsync(
+                BatchReadFileInStreamHeaders textHeaders =
+                    await computerVision.BatchReadFileInStreamAsync(
                         imageStream, textRecognitionMode);
 
                 await GetTextAsync(computerVision, textHeaders.OperationLocation);
@@ -102,9 +92,9 @@ namespace ExtractText
             string operationId = operationLocation.Substring(
                 operationLocation.Length - numberOfCharsInOperationId);
 
-            Console.WriteLine("\nCalling GetHandwritingRecognitionOperationResultAsync()");
-            TextOperationResult result =
-                await computerVision.GetTextOperationResultAsync(operationId);
+            Console.WriteLine("\nCalling GetReadOperationResultAsync()");
+            ReadOperationResult result =
+                await computerVision.GetReadOperationResultAsync(operationId);
 
             // Wait for the operation to complete
             int i = 0;
@@ -116,15 +106,18 @@ namespace ExtractText
                     "Server status: {0}, waiting {1} seconds...", result.Status, i);
                 await Task.Delay(1000);
 
-                result = await computerVision.GetTextOperationResultAsync(operationId);
+                result = await computerVision.GetReadOperationResultAsync(operationId);
             }
 
             // Display the results
             Console.WriteLine();
-            var lines = result.RecognitionResult.Lines;
-            foreach (Line line in lines)
+            var recResults = result.RecognitionResults;
+            foreach (TextRecognitionResult recResult in recResults)
             {
-                Console.WriteLine(line.Text);
+                foreach (Line line in recResult.Lines)
+                {
+                    Console.WriteLine(line.Text);
+                }
             }
             Console.WriteLine();
         }

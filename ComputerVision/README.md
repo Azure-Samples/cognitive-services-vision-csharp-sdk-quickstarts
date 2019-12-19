@@ -25,7 +25,7 @@ These samples demonstrate how to use the Computer Vision client library for C# t
 
 ### Prerequisites
 
-* You need a **subscription key** for the Computer Vision service to run the samples.  You can get free trial subscription keys from [Try Cognitive Services](https://azure.microsoft.com/try/cognitive-services/). For more information, see [How to obtain subscription keys](https://docs.microsoft.com/azure/cognitive-services/Computer-vision/vision-api-how-to-topics/howtosubscribe).
+* A Computer Vision subscription key. You can get a free trial subscription key from [Try Cognitive Services](https://azure.microsoft.com/try/cognitive-services/?api=computer-vision). Or, follow the instructions in [Create a Cognitive Services account](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account) to subscribe to Computer Vision and get your key. Then, [create environment variables](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-apis-create-account#configure-an-environment-variable-for-authentication) for the key and service endpoint string, named `COMPUTER_VISION_SUBSCRIPTION_KEY` and `COMPUTER_VISION_ENDPOINT`, respectively.
 * Any edition of [Visual Studio 2017](https://www.visualstudio.com/downloads/).
 
 ### Quickstart
@@ -40,12 +40,10 @@ These samples demonstrate how to use the Computer Vision client library for C# t
 1. Select the project to run by doing one of the following actions:
     * Use the dropdown combobox in the top menu to select the project.
     * Right-click the project and select **Set as StartUp Project**.
-1. Open the *Program.cs* file associated with the project.
-1. Replace `<Subscription Key>` with your valid subscription key.
-1. Change `computerVision.Endpoint` to the Azure region associated with your subscription keys, if necessary.
-1. For ExtractText, optionally set `textRecognitionMode` to `TextRecognitionMode.Printed`.
-1. Optionally, replace <`LocalImage>` with the path and file name of a local image (will be ignored if not set).
-1. Optionally, set `remoteImageUrl` to a different image.
+1. Optionally, open the *Program.cs* file associated with the project and change project parameters:
+   1. For ExtractText, optionally set `textRecognitionMode` to `TextRecognitionMode.Printed`.
+   1. Optionally, replace <`LocalImage>` with the path and file name of a local image (will be ignored if not set).
+   1. Optionally, set `remoteImageUrl` to a different image.
 1. Run the program.
 
 ## Resources
