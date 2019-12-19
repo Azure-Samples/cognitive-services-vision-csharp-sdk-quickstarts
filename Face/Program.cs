@@ -10,6 +10,7 @@ namespace DetectFace
 {
     class Program
     {
+
         // Add your Azure Computer Vision subscription key and endpoint to your environment variables
         private const string subscriptionKey = Environment.GetEnvironmentVariable("COMPUTER_VISION_SUBSCRIPTION_KEY");
         private const string faceEndpoint = Environment.GetEnvironmentVariable("COMPUTER_VISION_ENDPOINT");

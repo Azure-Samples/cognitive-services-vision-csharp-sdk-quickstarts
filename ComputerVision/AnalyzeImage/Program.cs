@@ -33,7 +33,7 @@ namespace ImageAnalyze
             ComputerVisionClient computerVision = new ComputerVisionClient(
                 new ApiKeyServiceClientCredentials(subscriptionKey),
                 new System.Net.Http.DelegatingHandler[] { });
-            
+     
             // Add your Computer Vision endpoint to your environment variables.
             computerVision.Endpoint = Environment.GetEnvironmentVariable("COMPUTER_VISION_ENDPOINT");
 
