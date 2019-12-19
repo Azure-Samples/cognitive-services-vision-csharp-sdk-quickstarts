@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
+using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
+using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
 
 using System;
 using System.IO;
@@ -8,100 +9,77 @@ namespace ImageThumbnail
 {
     class Program
     {
-        private const bool writeThumbnailToDisk = false;
+        // Download image and put in your bin/Debug/netcoreapp2.2 folder of your project:
+        // https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/ComputerVision/Images
+        // Or, you can just set the path to any appropriate image on your machine.
+        private const string LOCAL_IMAGE = "objects.jpg";
+        // URL image for detecting objects (image of man on skateboard)
+        private const string URL_IMAGE = "https://moderatorsampleimages.blob.core.windows.net/samples/sample9.png";
 
         // Add your Computer Vision subscription key to your environment variables.
-        private const string subscriptionKey = Environment.GetEnvironmentVariable("COMPUTER_VISION_SUBSCRIPTION_KEY");
-
-        // localImagePath = @"C:\Documents\LocalImage.jpg"
-        private const string localImagePath = @"<LocalImage>";
-
-        private const string remoteImageUrl =
-            "https://upload.wikimedia.org/wikipedia/commons/9/94/Bloodhound_Puppy.jpg";
+        static string SubscriptionKey = Environment.GetEnvironmentVariable("COMPUTER_VISION_SUBSCRIPTION_KEY");
+		static string Endpoint = Environment.GetEnvironmentVariable("COMPUTER_VISION_ENDPOINT");
 
         private const int thumbnailWidth = 100;
         private const int thumbnailHeight = 100;
 
         static void Main(string[] args)
         {
-            ComputerVisionClient computerVision = new ComputerVisionClient(
-                new ApiKeyServiceClientCredentials(subscriptionKey),
-                new System.Net.Http.DelegatingHandler[] { });
-
-            // Add your Computer Vision endpoint to your environment variables.
-            computerVision.Endpoint = Environment.GetEnvironmentVariable("COMPUTER_VISION_ENDPOINT");
-
-            Console.WriteLine("Images being analyzed ...\n");
-            var t1 = GetRemoteThumbnailAsync(computerVision, remoteImageUrl);
-            var t2 = GetLocalThumbnailAsnc(computerVision, localImagePath);
-
-            Task.WhenAll(t1, t2).Wait(5000);
-            Console.WriteLine("Press ENTER to exit");
-            Console.ReadLine();
+			ComputerVisionClient client =
+				new ComputerVisionClient(new ApiKeyServiceClientCredentials(SubscriptionKey))
+				{ 
+                    Endpoint = Endpoint; 
+                };
+            
+            // Generate a thumbnail image from a URL and local image
+            GenerateThumbnail(client, URL_IMAGE, LOCAL_IMAGE).Wait();
         }
 
-        // Create a thumbnail from a remote image
-        private static async Task GetRemoteThumbnailAsync(
-            ComputerVisionClient computerVision, string imageUrl)
-        {
-            if (!Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
-            {
-                Console.WriteLine(
-                    "\nInvalid remoteImageUrl:\n{0} \n", imageUrl);
-                return;
-            }
+      /*
+       * GENERATE THUMBNAIL
+       * Taking in a URL and local image, this example will generate a thumbnail image with specified width/height (pixels).
+       * The thumbnail will be saved locally.
+       */
+      public static async Task GenerateThumbnail(ComputerVisionClient client, string urlImage, string localImage)
+      {
+          Console.WriteLine("----------------------------------------------------------");
+          Console.WriteLine("GENERATE THUMBNAIL - URL & LOCAL IMAGE");
+          Console.WriteLine();
 
-            Stream thumbnail = await computerVision.GenerateThumbnailAsync(
-                thumbnailWidth, thumbnailHeight, imageUrl, true);
+          // Thumbnails will be saved locally in your bin\Debug\netcoreappx.x\ folder of this project.
+          string localSavePath = @".";
 
-            string path = Environment.CurrentDirectory;
-            string imageName = imageUrl.Substring(imageUrl.LastIndexOf('/') + 1);
-            string thumbnailFilePath =
-                path + "\\" + imageName.Insert(imageName.Length - 4, "_thumb");
+          // URL
+          Console.WriteLine("Generating thumbnail with URL image...");
+          // Setting smartCropping to true enables the image to adjust its aspect ratio
+          // to center on the area of interest in the image. Change the width/height, if desired.
+          Stream thumbnailUrl = await client.GenerateThumbnailAsync(60, 60, urlImage, true);
 
-            // Save the thumbnail to the current working directory,
-            // using the original name with the suffix "_thumb".
-            SaveThumbnail(thumbnail, thumbnailFilePath);
-        }
+          string imageNameUrl = Path.GetFileName(urlImage);
+          string thumbnailFilePathUrl = Path.Combine(localSavePath, imageNameUrl.Insert(imageNameUrl.Length - 4, "_thumb"));
 
-        // Create a thumbnail from a local image
-        private static async Task GetLocalThumbnailAsnc(
-            ComputerVisionClient computerVision, string imagePath)
-        {
-            if (!File.Exists(imagePath))
-            {
-                Console.WriteLine(
-                    "\nUnable to open or read localImagePath:\n{0} \n", imagePath);
-                return;
-            }
 
-            using (Stream imageStream = File.OpenRead(imagePath))
-            {
-                Stream thumbnail = await computerVision.GenerateThumbnailInStreamAsync(
-                    thumbnailWidth, thumbnailHeight, imageStream, true);
+          Console.WriteLine("Saving thumbnail from URL image to " + thumbnailFilePathUrl);
+          using (Stream file = File.Create(thumbnailFilePathUrl)) { thumbnailUrl.CopyTo(file); }
 
-                string thumbnailFilePath =
-                    localImagePath.Insert(localImagePath.Length - 4, "_thumb");
+          Console.WriteLine();
 
-                // Save the thumbnail to the same folder as the original image,
-                // using the original name with the suffix "_thumb".
-                SaveThumbnail(thumbnail, thumbnailFilePath);
-            }
-        }
+          // LOCAL
+          Console.WriteLine("Generating thumbnail with local image...");
 
-        // Save the thumbnail locally.
-        // NOTE: This will overwrite an existing file of the same name.
-        private static void SaveThumbnail(Stream thumbnail, string thumbnailFilePath)
-        {
-            if (writeThumbnailToDisk)
-            {
-                using (Stream file = File.Create(thumbnailFilePath))
-                {
-                    thumbnail.CopyTo(file);
-                }
-            }
-            Console.WriteLine("Thumbnail {0} written to: {1}\n",
-                writeThumbnailToDisk ? "" : "NOT", thumbnailFilePath);
+          using (Stream imageStream = File.OpenRead(localImage))
+          {
+
+              Stream thumbnailLocal = await client.GenerateThumbnailInStreamAsync(100, 100, imageStream, smartCropping: true);
+
+              string imageNameLocal = Path.GetFileName(localImage);
+              string thumbnailFilePathLocal = Path.Combine(localSavePath,
+                      imageNameLocal.Insert(imageNameLocal.Length - 4, "_thumb"));
+              // Save to file
+              Console.WriteLine("Saving thumbnail from local image to " + thumbnailFilePathLocal);
+              using (Stream file = File.Create(thumbnailFilePathLocal)) { thumbnailLocal.CopyTo(file); }
+          }
+            Console.WriteLine();
         }
     }
 }
